@@ -1,0 +1,31 @@
+<head>
+    <meta charset = "UTF-8" />
+    <title>The Game of Life</title>
+    <link rel="stylesheet" href="life.css">
+</head>
+<body>
+
+<div id="gridContainer">
+
+</div>
+
+<div class="controls">
+    <button id="start"><span>Start</span></button>
+    <button id="clear"><span>Clear</span></button>
+    <button id="random"><span>Random</span></button>
+    <button id="add_cell_group"><span>Add Cell Group</span></button>
+</div>
+
+<div class = "input">
+    <label for="units_number">Please type in the number of units</label>
+    <input id="units_number" type = "number" min="1"/>
+    <span id="error_unit_number" style="display: none">Please choose a number in range from 2 to 5</span>
+</div>
+
+<div class = "output">
+    <p id="display_cell_name" contentEditable="true" style="display: none">Cell Name</p>
+</div>
+
+<script src="test.js"></script>
+
+</body>
