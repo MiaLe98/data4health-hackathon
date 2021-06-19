@@ -354,7 +354,11 @@
         $(".pred-acc").html(accuracy);
     }
 
+      $("input.form-control").change(function(){
+          sendPredictionRequest();
+      })
     function sendPredictionRequest(){
+          console.log("sendPredictionRequest()")
         var payload = {};
         $("input.form-control").each(function(x, elem){
             var el = $(elem);
@@ -369,14 +373,14 @@
         //     data = JSON.parse(data);
               var input = payload;
               var mock_ml_equation_result = {
-                  acc: randomIntFromInterval(71,92),
+                  acc: randomIntFromInterval(79,86),
                   efficiency: (input['B-Cell-input'] / (input['B-Cell-input'] * input['NK-Cell-input']))
                   * ((input['IL-2-input'] + input['IL-4-input'] + input['IL-8-input']) / (input['IL-10-input'] + input['IL-12-input'] + input['IL-6-input'])),
                   growth: randomIntFromInterval(130,392),
                   volume: randomIntFromInterval(5,100)
               }
 
-              if(mock_ml_equation_result.efficiency == 0 || !mock_ml_equation_result.efficiency){
+              if(mock_ml_equation_result.efficiency == 0 || !mock_ml_equation_result.efficiency || mock_ml_equation_result.efficiency == "Infinity"){
                   mock_ml_equation_result.efficiency = randomIntFromInterval(51,92);
               }else{
                   mock_ml_equation_result.efficiency *= 100;
