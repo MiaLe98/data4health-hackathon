@@ -136,12 +136,27 @@ function changeLabelText(text) {
   document.getElementById("label").innerText = text;
 }
 
+function changeEnvironmentLabel(id, text) {
+  document.getElementById(id).innerText = text;
+}
+
 function setupControlButtons() {
   // label buttons
   document.querySelectorAll(".label-button-groups button").forEach(
     (button) =>
       (button.onclick = () => {
         changeLabelText(button.innerText);
+      })
+  );
+
+  // environment inputs
+  document.querySelectorAll(".environment-button-groups input").forEach(
+    (input) =>
+      (input.onchange = (event) => {
+        let label_id = input.id.replace("input", "label");
+        let text = `${label_id.split("-")[0]}: ${event.target.value}`;
+
+        changeEnvironmentLabel(label_id, text);
       })
   );
 

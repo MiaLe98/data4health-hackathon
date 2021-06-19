@@ -72,3 +72,8 @@ td.live {
 .delete-btn:hover {
   opacity: 0.6;
 }
+
+/* LABEL */
+.environment-label {
+  margin-right: 10px;
+}

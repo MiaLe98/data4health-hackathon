@@ -39,6 +39,51 @@
             SCGM
           </button>
         </div>
+        <div class="control-wrapper environment-button-groups">
+          <p style="font-size: x-large">Environment Control</p>
+          <div class="control-field">
+            <button type="button" class="btn btn-secondary" id="CO2">
+              CO2
+            </button>
+            <input
+              type="number"
+              class="form-control"
+              id="CO2-input"
+              placeholder="Enter concentrations"
+            />
+          </div>
+
+          <div class="control-field">
+            <button type="button" class="btn btn-secondary" id="O2">O2</button>
+            <input
+              type="number"
+              class="form-control"
+              id="O2-input"
+              placeholder="Enter concentrations"
+            />
+          </div>
+
+          <div class="control-field">
+            <button type="button" class="btn btn-secondary" id="pH">pH</button>
+            <input
+              type="number"
+              class="form-control"
+              id="pH-input"
+              placeholder="Enter concentrations"
+            />
+          </div>
+          <div class="control-field">
+            <button type="button" class="btn btn-secondary" id="temp">
+              Temperature
+            </button>
+            <input
+              type="number"
+              class="form-control"
+              id="temp-input"
+              placeholder="Enter temperature"
+            />
+          </div>
+        </div>
         <div class="control-wrapper add-cell-button-groups">
           <p style="font-size: x-large">Add Cell Types</p>
           <div class="control-field">
@@ -224,16 +269,33 @@
         >
           <div id="gridContainer"></div>
         </div>
-        <span
-          style="
-            margin-top: -80px;
-            font-size: x-large;
-            position: absolute;
-            top: 660px;
-          "
-          id="label"
-        >
-        </span>
+        <div style="font-size: large; position: absolute; top: 680px">
+          <div style="text-align: center">
+            <span id="label"></span>
+          </div>
+          <div style="display: flex">
+            <span
+              class="environment-label"
+              style="font-size: small"
+              id="CO2-label"
+            ></span>
+            <span
+              class="environment-label"
+              style="font-size: small"
+              id="O2-label"
+            ></span>
+            <span
+              class="environment-label"
+              style="font-size: small"
+              id="pH-label"
+            ></span>
+            <span
+              class="environment-label"
+              style="font-size: small"
+              id="temp-label"
+            ></span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
