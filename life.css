@@ -3,10 +3,6 @@ body {
   background-color: #fafafa;
 }
 
-#gridContainer {
-  padding-bottom: 10px;
-}
-
 table {
   background-color: #c5d6c6;
   border-spacing: 0;
@@ -15,15 +11,11 @@ table {
 td {
   border: 1px solid #f1f5da;
   border-radius: 3px;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
-span {
-  color: #222;
-}
-
-#start,
+/* #start,
 #clear,
 #random,
 #add_cell_group {
@@ -31,13 +23,52 @@ span {
   border-radius: 5px;
   border: none;
   background: linear-gradient(to bottom right, #c5dec6, #587559);
-}
+} */
 
 td.dead {
-  background-color: transparent;
+  background-color: #fafafa;
+  border: none;
+  border-radius: 0;
 }
 
 td.live {
   background-color: #cc4774;
   border-radius: 10px;
+}
+
+/* CONTROL  */
+.control-wrapper {
+  margin-bottom: 10px;
+}
+
+.control-wrapper button {
+  margin-right: 10px;
+  width: 120px;
+}
+
+.control-field {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 5px;
+}
+
+.control-field input {
+  width: 42%;
+}
+
+.control-field span {
+  align-self: center;
+  margin-left: 5px;
+  margin-right: 10px;
+}
+
+.delete-btn {
+  width: 50px !important;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  opacity: 0.6;
 }
