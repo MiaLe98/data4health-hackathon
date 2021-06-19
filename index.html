@@ -14,7 +14,7 @@
   />
   <link rel="stylesheet" href="life.css" />
 
-  <title>The Game of Life</title>
+  <title>Cell Simulator</title>
 </head>
 <body>
   <div class="container">
@@ -298,6 +298,27 @@
         </div>
       </div>
     </div>
+    <hr>
+    <h1 align="center"><u>The current selection of Ingredients would result in:</u></h1>
+    <div class="row" align="center">
+      <div class="col-3">
+        <h2>Predicted Culture<br>Efficiency</h2>
+        <h1 ><span class="pred-efficiency">86</span>%</h1>
+      </div>
+      <div class="col-3">
+        <h2>Predicted Growth<br>Rate</h2>
+        <h1><span class="pred-growth">320</span>%
+        <br><small>per day</small></h1>
+      </div>
+      <div class="col-3">
+        <h2>Estimated<br>Dosage Volume</h2>
+        <h1 ><span class="pred-volume">50</span>ml</h1>
+      </div>
+      <div class="col-3">
+        <h2>Simulator<br>Accuracy</h2>
+        <h1 ><span class="pred-acc">82</span>%</h1>
+      </div>
+    </div>
   </div>
 
   <div class="output">
@@ -321,6 +342,60 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"
   ></script>
+
+  <script>
+      function randomIntFromInterval(min, max) { // min and max included
+          return Math.floor(Math.random() * (max - min + 1) + min)
+      }
+    function setPredictionUi(efficiency, growth, volume, accuracy){
+        $(".pred-efficiency").html(efficiency);
+        $(".pred-growth").html(growth);
+        $(".pred-volume").html(volume);
+        $(".pred-acc").html(accuracy);
+    }
+
+    function sendPredictionRequest(){
+        var payload = {};
+        $("input.form-control").each(function(x, elem){
+            var el = $(elem);
+            var value = el.val();
+            var id = el.attr("id");
+
+            payload[id] = (value.length == 0 ? 0 : parseInt(value));
+        });
+        console.log("payload::", payload);
+
+        // $.post("/mlsim",function(data){
+        //     data = JSON.parse(data);
+              var input = payload;
+              var mock_ml_equation_result = {
+                  acc: randomIntFromInterval(71,92),
+                  efficiency: (input['B-Cell-input'] / (input['B-Cell-input'] * input['NK-Cell-input']))
+                  * ((input['IL-2-input'] + input['IL-4-input'] + input['IL-8-input']) / (input['IL-10-input'] + input['IL-12-input'] + input['IL-6-input'])),
+                  growth: randomIntFromInterval(130,392),
+                  volume: randomIntFromInterval(5,100)
+              }
+
+              if(mock_ml_equation_result.efficiency == 0 || !mock_ml_equation_result.efficiency){
+                  mock_ml_equation_result.efficiency = randomIntFromInterval(51,92);
+              }else{
+                  mock_ml_equation_result.efficiency *= 100;
+                  mock_ml_equation_result.efficiency = mock_ml_equation_result.efficiency.toFixed(2);
+              }
+
+              console.log("mock_ml_equation_result::", mock_ml_equation_result);
+
+              setPredictionUi(
+                      mock_ml_equation_result.acc,
+                      mock_ml_equation_result.efficiency,
+                      mock_ml_equation_result.growth,
+                      mock_ml_equation_result.volume);
+
+        // });
+    }
+
+    sendPredictionRequest();
+  </script>
 
   <script src="newLife.js"></script>
 </body>
