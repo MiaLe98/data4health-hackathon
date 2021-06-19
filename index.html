@@ -39,51 +39,6 @@
             SCGM
           </button>
         </div>
-        <div class="control-wrapper environment-button-groups">
-          <p style="font-size: x-large">Environment Control</p>
-          <div class="control-field">
-            <button type="button" class="btn btn-secondary" id="CO2">
-              CO2
-            </button>
-            <input
-              type="number"
-              class="form-control"
-              id="CO2-input"
-              placeholder="Enter concentrations"
-            />
-          </div>
-
-          <div class="control-field">
-            <button type="button" class="btn btn-secondary" id="O2">O2</button>
-            <input
-              type="number"
-              class="form-control"
-              id="O2-input"
-              placeholder="Enter concentrations"
-            />
-          </div>
-
-          <div class="control-field">
-            <button type="button" class="btn btn-secondary" id="pH">pH</button>
-            <input
-              type="number"
-              class="form-control"
-              id="pH-input"
-              placeholder="Enter concentrations"
-            />
-          </div>
-          <div class="control-field">
-            <button type="button" class="btn btn-secondary" id="temp">
-              Temperature
-            </button>
-            <input
-              type="number"
-              class="form-control"
-              id="temp-input"
-              placeholder="Enter temperature"
-            />
-          </div>
-        </div>
         <div class="control-wrapper add-cell-button-groups">
           <p style="font-size: x-large">Add Cell Types</p>
           <div class="control-field">
@@ -269,7 +224,7 @@
         >
           <div id="gridContainer"></div>
         </div>
-        <div style="font-size: large; position: absolute; top: 680px">
+        <div style="font-size: large; position: absolute; top: 450px">
           <div style="text-align: center">
             <span id="label"></span>
           </div>
@@ -296,27 +251,75 @@
             ></span>
           </div>
         </div>
+        <div class="control-wrapper environment-button-groups">
+          <p style="font-size: x-large">Environment Control</p>
+          <div class="control-field">
+            <button type="button" class="btn btn-secondary" id="CO2">
+              CO2
+            </button>
+            <input
+              type="number"
+              class="form-control"
+              id="CO2-input"
+              placeholder="Enter concentrations"
+            />
+          </div>
+
+          <div class="control-field">
+            <button type="button" class="btn btn-secondary" id="O2">O2</button>
+            <input
+              type="number"
+              class="form-control"
+              id="O2-input"
+              placeholder="Enter concentrations"
+            />
+          </div>
+
+          <div class="control-field">
+            <button type="button" class="btn btn-secondary" id="pH">pH</button>
+            <input
+              type="number"
+              class="form-control"
+              id="pH-input"
+              placeholder="Enter concentrations"
+            />
+          </div>
+          <div class="control-field">
+            <button type="button" class="btn btn-secondary" id="temp">
+              Temperature
+            </button>
+            <input
+              type="number"
+              class="form-control"
+              id="temp-input"
+              placeholder="Enter temperature"
+            />
+          </div>
+        </div>
       </div>
     </div>
-    <hr>
-    <h1 align="center"><u>The current selection of Ingredients would result in:</u></h1>
+    <hr />
+    <h1 align="center">
+      <u>The current selection of Ingredients would result in:</u>
+    </h1>
     <div class="row" align="center">
       <div class="col-3">
-        <h2>Predicted Culture<br>Efficiency</h2>
-        <h1 ><span class="pred-efficiency">86</span>%</h1>
+        <h2>Predicted Culture<br />Efficiency</h2>
+        <h1><span class="pred-efficiency">86</span>%</h1>
       </div>
       <div class="col-3">
-        <h2>Predicted Growth<br>Rate</h2>
-        <h1><span class="pred-growth">320</span>%
-        <br><small>per day</small></h1>
+        <h2>Predicted Growth<br />Rate</h2>
+        <h1>
+          <span class="pred-growth">320</span>% <br /><small>per day</small>
+        </h1>
       </div>
       <div class="col-3">
-        <h2>Estimated<br>Dosage Volume</h2>
-        <h1 ><span class="pred-volume">50</span>ml</h1>
+        <h2>Estimated<br />Dosage Volume</h2>
+        <h1><span class="pred-volume">50</span>ml</h1>
       </div>
       <div class="col-3">
-        <h2>Simulator<br>Accuracy</h2>
-        <h1 ><span class="pred-acc">82</span>%</h1>
+        <h2>Simulator<br />Accuracy</h2>
+        <h1><span class="pred-acc">82</span>%</h1>
       </div>
     </div>
   </div>
@@ -344,58 +347,70 @@
   ></script>
 
   <script>
-      function randomIntFromInterval(min, max) { // min and max included
-          return Math.floor(Math.random() * (max - min + 1) + min)
-      }
-    function setPredictionUi(efficiency, growth, volume, accuracy){
-        $(".pred-efficiency").html(efficiency);
-        $(".pred-growth").html(growth);
-        $(".pred-volume").html(volume);
-        $(".pred-acc").html(accuracy);
+    function randomIntFromInterval(min, max) {
+      // min and max included
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    function setPredictionUi(efficiency, growth, volume, accuracy) {
+      $(".pred-efficiency").html(efficiency);
+      $(".pred-growth").html(growth);
+      $(".pred-volume").html(volume);
+      $(".pred-acc").html(accuracy);
     }
 
-      $("input.form-control").change(function(){
-          sendPredictionRequest();
-      })
-    function sendPredictionRequest(){
-          console.log("sendPredictionRequest()")
-        var payload = {};
-        $("input.form-control").each(function(x, elem){
-            var el = $(elem);
-            var value = el.val();
-            var id = el.attr("id");
+    $("input.form-control").change(function () {
+      sendPredictionRequest();
+    });
+    function sendPredictionRequest() {
+      console.log("sendPredictionRequest()");
+      var payload = {};
+      $("input.form-control").each(function (x, elem) {
+        var el = $(elem);
+        var value = el.val();
+        var id = el.attr("id");
 
-            payload[id] = (value.length == 0 ? 0 : parseInt(value));
-        });
-        console.log("payload::", payload);
+        payload[id] = value.length == 0 ? 0 : parseInt(value);
+      });
+      console.log("payload::", payload);
 
-        // $.post("/mlsim",function(data){
-        //     data = JSON.parse(data);
-              var input = payload;
-              var mock_ml_equation_result = {
-                  acc: randomIntFromInterval(79,86),
-                  efficiency: (input['B-Cell-input'] / (input['B-Cell-input'] * input['NK-Cell-input']))
-                  * ((input['IL-2-input'] + input['IL-4-input'] + input['IL-8-input']) / (input['IL-10-input'] + input['IL-12-input'] + input['IL-6-input'])),
-                  growth: randomIntFromInterval(130,392),
-                  volume: randomIntFromInterval(5,100)
-              }
+      // $.post("/mlsim",function(data){
+      //     data = JSON.parse(data);
+      var input = payload;
+      var mock_ml_equation_result = {
+        acc: randomIntFromInterval(79, 86),
+        efficiency:
+          (input["B-Cell-input"] /
+            (input["B-Cell-input"] * input["NK-Cell-input"])) *
+          ((input["IL-2-input"] + input["IL-4-input"] + input["IL-8-input"]) /
+            (input["IL-10-input"] +
+              input["IL-12-input"] +
+              input["IL-6-input"])),
+        growth: randomIntFromInterval(130, 392),
+        volume: randomIntFromInterval(5, 100),
+      };
 
-              if(mock_ml_equation_result.efficiency == 0 || !mock_ml_equation_result.efficiency || mock_ml_equation_result.efficiency == "Infinity"){
-                  mock_ml_equation_result.efficiency = randomIntFromInterval(51,92);
-              }else{
-                  mock_ml_equation_result.efficiency *= 100;
-                  mock_ml_equation_result.efficiency = mock_ml_equation_result.efficiency.toFixed(2);
-              }
+      if (
+        mock_ml_equation_result.efficiency == 0 ||
+        !mock_ml_equation_result.efficiency ||
+        mock_ml_equation_result.efficiency == "Infinity"
+      ) {
+        mock_ml_equation_result.efficiency = randomIntFromInterval(51, 92);
+      } else {
+        mock_ml_equation_result.efficiency *= 100;
+        mock_ml_equation_result.efficiency =
+          mock_ml_equation_result.efficiency.toFixed(2);
+      }
 
-              console.log("mock_ml_equation_result::", mock_ml_equation_result);
+      console.log("mock_ml_equation_result::", mock_ml_equation_result);
 
-              setPredictionUi(
-                      mock_ml_equation_result.acc,
-                      mock_ml_equation_result.efficiency,
-                      mock_ml_equation_result.growth,
-                      mock_ml_equation_result.volume);
+      setPredictionUi(
+        mock_ml_equation_result.acc,
+        mock_ml_equation_result.efficiency,
+        mock_ml_equation_result.growth,
+        mock_ml_equation_result.volume
+      );
 
-        // });
+      // });
     }
 
     sendPredictionRequest();
